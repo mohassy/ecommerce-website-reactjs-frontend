@@ -6,6 +6,7 @@ import ArrowLeftOutlinedIcon from '@mui/icons-material/ArrowLeftOutlined';
 import ArrowRightOutlinedIcon from '@mui/icons-material/ArrowRightOutlined';
 import {sliderItems} from "../data.ts";
 import {mobile} from "../responsive.ts";
+import {Link} from "react-router-dom";
 
 const Container = styled.div`
   width: 100%;
@@ -51,16 +52,20 @@ const Slide = styled.div`
 `
 const ImgContainer = styled.div`
   height: 100%;
-  flex:1
+  flex:1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `
 
 const Image = styled.img`
-  height: 80%;
-
+  object-fit: cover;
+  padding: 50px;
+  width: 100%;
 `
 
 const InfoContainer = styled.div`
-  flex:1
+  flex:2;
 `
 
 const Title = styled.h1`
@@ -100,7 +105,10 @@ const Slider = () => {
                     <InfoContainer>
                         <Title>{item.title}</Title>
                         <Desc>{item.desc}</Desc>
-                        <Button>SHOW NOW</Button>
+                        <Link to={'/products'}>
+                            <Button>SHOW NOW</Button>
+                        </Link>
+
                     </InfoContainer>
                 </Slide>)}
         </Wrapper>

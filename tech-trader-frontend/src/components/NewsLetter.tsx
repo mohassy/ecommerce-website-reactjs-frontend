@@ -7,6 +7,7 @@ import {mobile} from "../responsive.ts";
 
 
 const Container = styled.div`
+  box-sizing: border-box;
   height: 60vh;
   background-color: #fcf5f5;
   display: flex;
@@ -28,25 +29,31 @@ const Desc = styled.div`
 const InputContainer = styled.div`
   width: 50%;
   height: 40px;
-  background-color: white;
+  background-color: #fcf5f5;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  border: 1px solid lightgray;
+  border: none;
   ${mobile({justifyContent: "center", width: "40%"})}
 `
 const Input = styled.input`
-  flex: 8;
+  width: 80%;
   padding: 20px;
   border: none;
+  &:focus{
+    outline: solid 2px teal;
+  }
 `
 const Button = styled.button`
   border: none;
-  padding: 15px;
+  padding: 20px;
   background-color: teal;
   color: white;
   cursor: pointer;
-  flex: 1;
+  width: 15%;
+  &:hover{
+    width: 20%;
+  }
+  transition: width ease-in-out 0.25s;
 `
 const NewsLetter = () => {
     return (

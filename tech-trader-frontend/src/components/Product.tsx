@@ -5,6 +5,10 @@ import styled from "styled-components";
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
+import {Link} from "react-router-dom";
+import {addProduct} from "../redux/cartRedux.ts";
+import Product_t from "../models/Product_t.ts";
+import {useDispatch} from "react-redux";
 const Container = styled.div`
   box-sizing: border-box;
   margin: 5px;
@@ -26,7 +30,9 @@ const Circle = styled.div`
   position: absolute;
 `
 const Image = styled.img`
-  height: 75%;
+  max-width: 75%;
+  max-height: 75%;
+  object-fit: cover;
   z-index: 2;
 `
 const Info = styled.div`
@@ -65,17 +71,42 @@ const Icon = styled.div`
   }
 `
 
-const Product = ({product} : any) => {
+const Button = styled.button`
+  background: transparent;
+  border-radius: 50%;
+  border: 0px;
+
+`
+
+interface Props {
+    product: Product_t;
+}
+
+const Product = ({product} : Props) => {
+    const dispatch = useDispatch();
+    const quantity = 1;
+    const color: string = product.colors[0];
+    const condition: string = product.conditions[0];
+
+    const addToCartHandler = (event: React.ChangeEvent<HTMLButtonElement>) =>{
+        event.preventDefault();
+        dispatch(addProduct({...product, quantity, color, condition}));
+    }
+
     return (
         <Container>
             <Circle/>
             <Image src={product.img}/>
             <Info>
                 <Icon>
-                    <ShoppingCartOutlinedIcon/>
+                    <Button onClick={addToCartHandler}>
+                        <ShoppingCartOutlinedIcon/>
+                    </Button>
                 </Icon>
                 <Icon>
-                    <SearchOutlinedIcon/>
+                    <Link to={`/product/${product.id}`}>
+                        <SearchOutlinedIcon/>
+                    </Link>
                 </Icon>
                 <Icon>
                     <FavoriteBorderOutlinedIcon/>

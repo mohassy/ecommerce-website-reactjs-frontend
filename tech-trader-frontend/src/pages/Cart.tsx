@@ -7,6 +7,11 @@ import Footer from "../components/Footer.tsx";
 import Navbar from "../components/Navbar.tsx";
 import {Add, Remove} from "@mui/icons-material";
 import {mobile} from "../responsive.ts";
+import {useDispatch, useSelector} from "react-redux";
+import storeState from "../models/storeState.ts";
+import {decreaseQuantity, increaseQuantity} from "../redux/cartRedux.ts";
+import {Link} from "react-router-dom";
+
 
 
 const Container = styled.div``;
@@ -77,11 +82,13 @@ const Details = styled.div`
 
 const ProductName = styled.span``;
 const ProductId = styled.span``;
+
 const ProductColor = styled.div`
   width: 20px;
   height: 20px;
   border-radius: 50%;
   background-color: ${({color}: any) => color};
+  border: 1px solid lightgrey;
 `;
 const ProductSize = styled.span``;
 const PriceDetail = styled.div`
@@ -148,6 +155,16 @@ const Button = styled.button`
   font-weight: 600;
 `
 const Cart = () => {
+    const cart = useSelector((state:storeState) => state.cart)
+    const dispatch = useDispatch();
+    function addHandler(index: number) {
+        dispatch(increaseQuantity({index}));
+    }
+
+    function removeHandler(index: number) {
+        dispatch(decreaseQuantity({index}));
+    }
+
     return (
         <Container>
             <Navbar/>
@@ -155,72 +172,62 @@ const Cart = () => {
             <Wrapper>
                 <Title>YOUR BAG</Title>
                 <Top>
-                    <TopButton>CONTINUE SHOPPING</TopButton>
+                    <Link to={'/products'}>
+                        <TopButton>CONTINUE SHOPPING</TopButton>
+                    </Link>
+
                     <TopTexts>
-                        <TopText>Shopping Bag(2)</TopText>
-                        <TopText>Your Wishlist(2)</TopText>
+                        <TopText>Shopping Bag ({cart.quantity})</TopText>
+                        <TopText>Your Wishlist ({cart.quantity})</TopText>
                     </TopTexts>
                     <TopButton type="filled">CHECKOUT NOW</TopButton>
                 </Top>
                 <Bottom>
                     <Info>
-                        <Product>
-                            <ProductDetail>
-                                <Image src="https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1614188818-TD1MTHU_SHOE_ANGLE_GLOBAL_MENS_TREE_DASHERS_THUNDER_b01b1013-cd8d-48e7-bed9-52db26515dc4.png?crop=1xw:1.00xh;center,top&resize=480%3A%2A"></Image>
-                                <Details>
-                                    <ProductName><b>Product:</b> JESSIE THUNDER SHOES</ProductName>
-                                    <ProductId><b>Id:</b> 97490148718975</ProductId>
-                                    <ProductColor color="black" />
-                                    <ProductSize><b>Size:</b> 37.5</ProductSize>
-                                </Details>
-                            </ProductDetail>
-                            <PriceDetail>
-                                <ProductAmountContainer>
-                                    <Add/>
-                                    <ProductAmount>2</ProductAmount>
-                                    <Remove/>
-                                </ProductAmountContainer>
-                                <ProductPrice>$ 30</ProductPrice>
-                            </PriceDetail>
-                        </Product>
-                        <Hr/>
-                        <Product>
-                            <ProductDetail>
-                                <Image src="https://i.pinimg.com/originals/2d/af/f8/2daff8e0823e51dd752704a47d5b795c.png"></Image>
-                                <Details>
-                                    <ProductName><b>Product:</b> HAKURA T-SHIRT</ProductName>
-                                    <ProductId><b>Id:</b> 9A74A9ASDFA5</ProductId>
-                                    <ProductColor color="gray" />
-                                    <ProductSize><b>Size:</b> M</ProductSize>
-                                </Details>
-                            </ProductDetail>
-                            <PriceDetail>
-                                <ProductAmountContainer>
-                                    <Add/>
-                                    <ProductAmount>1</ProductAmount>
-                                    <Remove/>
-                                </ProductAmountContainer>
-                                <ProductPrice>$ 20</ProductPrice>
-                            </PriceDetail>
-                        </Product>
+                        {cart.products.map((product, index )=>{
+                            return (
+                                <Container key={index.toString().concat(product.id.toString())}>
+                                <Product>
+                                    <ProductDetail>
+                                        <Image
+                                            src={product.img}></Image>
+                                        <Details>
+                                            <ProductName><b>Product:</b> {product.title.toUpperCase()}</ProductName>
+                                            <ProductId><b>Id:</b> {product.id}</ProductId>
+                                            <ProductColor color={product.color}/>
+                                            <ProductSize><b>Condition: </b>{product.condition}</ProductSize>
+                                        </Details>
+                                    </ProductDetail>
+                                    <PriceDetail>
+                                        <ProductAmountContainer>
+                                            <Remove onClick={()=> removeHandler(index)}/>
+                                            <ProductAmount>{product.quantity}</ProductAmount>
+                                            <Add onClick={()=>addHandler(index)}/>
+                                        </ProductAmountContainer>
+                                        <ProductPrice>$ {(product.quantity * product.price).toFixed(2)}</ProductPrice>
+                                    </PriceDetail>
+                                </Product>
+                                <Hr/>
+                            </Container>)
+                        })}
                     </Info>
                     <Summary>
                         <SummaryTitle>ORDER SUMMARY</SummaryTitle>
                         <SummaryItem>
                             <SummaryItemText>Subtotal</SummaryItemText>
-                            <SummaryItemPrice>$ 80</SummaryItemPrice>
+                            <SummaryItemPrice>$ {cart.total.toFixed(2)}</SummaryItemPrice>
                         </SummaryItem>
                         <SummaryItem>
                             <SummaryItemText>Estimated Shipping</SummaryItemText>
-                            <SummaryItemPrice>$ 8.90</SummaryItemPrice>
+                            <SummaryItemPrice>$ {(cart.total * 0.1).toFixed(2)}</SummaryItemPrice>
                         </SummaryItem>
                         <SummaryItem>
                             <SummaryItemText>Shipping Discount</SummaryItemText>
-                            <SummaryItemPrice>$ -8.90</SummaryItemPrice>
+                            <SummaryItemPrice>$ {(-cart.total * 0.1).toFixed(2)}</SummaryItemPrice>
                         </SummaryItem>
                         <SummaryItem type="total">
                             <SummaryItemText>Total</SummaryItemText>
-                            <SummaryItemPrice>$ 80</SummaryItemPrice>
+                            <SummaryItemPrice>$ {cart.total.toFixed(2)}</SummaryItemPrice>
                         </SummaryItem>
                         <Button>CHECKOUT NOW</Button>
                     </Summary>

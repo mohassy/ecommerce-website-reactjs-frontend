@@ -3,6 +3,7 @@ import React from 'react';
 // @ts-ignore
 import styled from "styled-components";
 import {mobile} from "../responsive.ts";
+import {Link} from "react-router-dom";
 
 
 const Container = styled.div`
@@ -35,6 +36,8 @@ const Info = styled.div`
 const Title = styled.h1`
   color: white;
   margin-bottom: 20px;
+  font-weight: 700;
+  text-shadow: #000 2px 2px 3px;
 `
 
 const Button = styled.button`
@@ -44,19 +47,21 @@ const Button = styled.button`
   color: grey;
   font-weight: 700;
   letter-spacing: 5px;
+  border-radius: 50px;
   cursor: pointer;
-
 `
 
 
 const CategoryItem = ({item}: any) => {
     return (
         <Container>
-            <Image src={item.img}/>
-            <Info>
-                <Title>{item.title}</Title>
-                <Button> SHOP NOW </Button>
-            </Info>
+            <Link to = {`/products/${item.cat}`}>
+                <Image src={item.img}/>
+                <Info>
+                    <Title>{item.title}</Title>
+                    <Button> SHOP NOW </Button>
+                </Info>
+            </Link>
         </Container>
     );
 };

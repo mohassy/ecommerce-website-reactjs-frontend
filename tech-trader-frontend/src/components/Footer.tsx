@@ -10,6 +10,7 @@ import PinterestIcon from '@mui/icons-material/Pinterest';
 import PlaceIcon from '@mui/icons-material/Place';
 import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
+import logo from "./../assets/logo.svg"
 import {mobile} from "../responsive.ts";
 
 const Container = styled.div`
@@ -35,8 +36,8 @@ const Right = styled.div`
   ${mobile({backgroundColor: "#f8f3f3"})}
 `
 
-const Logo = styled.h1`
-  margin-left: 20px;
+const Logo = styled.img`
+  width: 50%;
 `
 
 const Desc = styled.p`
@@ -89,10 +90,11 @@ const Footer = () => {
     return (
         <Container>
             <Left>
-                <Logo>TECH TRADER</Logo>
+                <Logo src={logo}></Logo>
                 <Desc>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque autem consectetur cupiditate,
-                    deleniti dolorem ducimus eveniet fuga, iure labore maiores natus nobis nostrum obcaecati quibusdam rem temporibus veritatis vero vitae.
+                    Welcome to the best place to buy and sell your personal electronics.
+                    Tech Traders is an ecommerce website where you can trade your new or even heavily used products at the best prices possible.
+                    Make a trade today with the click of a button!
                 </Desc>
                 <SocailContainer>
                     <SocailIcon color={"3B5999"}>
@@ -114,8 +116,6 @@ const Footer = () => {
                 <List>
                     <ListItem>Home</ListItem>
                     <ListItem>Cart</ListItem>
-                    <ListItem>Man Fashion</ListItem>
-                    <ListItem>Woman Fashion</ListItem>
                     <ListItem>Accessories</ListItem>
                     <ListItem>My Account</ListItem>
                     <ListItem>Order Tracking</ListItem>
@@ -125,7 +125,7 @@ const Footer = () => {
             </Center>
             <Right>
                 <Title>Contact</Title>
-                <ContactItem> <PlaceIcon style={{marginRight: "10px"}}/> 622 Dixie road South Tobinchester 98336</ContactItem>
+                <ContactItem> <PlaceIcon style={{marginRight: "10px"}}/> 622 Dixie road South Winchester 98336</ContactItem>
                 <ContactItem> <PhoneIcon style={{marginRight: "10px"}}/> +1 234 533 3245</ContactItem>
                 <ContactItem><EmailIcon style={{marginRight: "10px"}}/> contact@techtrader.dev</ContactItem>
                 <Payment src="https://i.ibb.co/Qfvn4z6/payment.png" alt=""/>

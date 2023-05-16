@@ -1,41 +1,49 @@
+import img1 from "./assets/img/HomepageImg_1.png"
+import img2 from "./assets/img/HomepageImg_2.png"
+import img3 from "./assets/img/HomepageImg_3.png"
+
+
 export const sliderItems     = [
     {
         id: 1,
-        img: "https://i.ibb.co/DG69bQ4/2.png",
+        img: img1,
         title: "SUMMER SALE",
-        desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
+        desc: "DON'T COMPROMISE ON TECHNOLOGY! GET FLAT 30% OFF FOR NEW ARRIVALS.",
         bg: "f5fafd",
     },
     {
         id: 2,
-        img: "https://i.ibb.co/DG69bQ4/2.png",
+        img: img2,
         title: "AUTUMN COLLECTION",
-        desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
+        desc: "DON'T COMPROMISE ON PERSONAL ELECTRONICS! GET FLAT 30% OFF FOR NEW ARRIVALS.",
         bg: "fcf1ed",
     },
     {
         id: 3,
-        img: "https://i.ibb.co/cXFnLLV/3.png",
-        title: "LOUNGEWEAR LOVE",
-        desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
+        img: img3,
+        title: "TRADE FOR LOVE",
+        desc: "DON'T COMPROMISE ON ACCESSORIES! GET FLAT 30% OFF FOR NEW ARRIVALS.",
         bg: "fbf0f4",
     },
 ];
 export const categories = [
     {
         id: 1,
-        img: "https://images.pexels.com/photos/5886041/pexels-photo-5886041.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-        title: "SHIRT STYLE!",
+        img: "https://images.unsplash.com/photo-1577979749830-f1d742b96791?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+        title: "TVS",
+        cat: "TV"
     },
     {
         id: 2,
-        img: "https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-        title: "LOUNGEWEAR LOVE",
+        img: "https://images.unsplash.com/photo-1631452090710-f3914f393618?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
+        title: "DESKTOP COMPUTERS",
+        cat: "Desktop Computer"
     },
     {
         id: 3,
-        img: "https://images.pexels.com/photos/5480696/pexels-photo-5480696.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-        title: "LIGHT JACKETS",
+        img: "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80",
+        title: "LAPTOPS",
+        cat: "Laptop"
     },
 ];
 

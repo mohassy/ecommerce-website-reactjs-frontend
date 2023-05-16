@@ -1,4 +1,4 @@
-type Product = {
+type Product_t = {
     id: bigint;
     title: string;
     img: string;
@@ -8,23 +8,17 @@ type Product = {
     conditions: string[];
     colors: string[];
     specs: [string, string, string];
-    color: string;
-    condition: string;
-    quantity: number;
 }
-export const initialProduct: Product = {
+export const initialProduct: Product_t = {
     id: BigInt(1),
-    title: 'Product Title',
+    title: 'Product_t Title',
     img: 'product-image.jpg',
-    type: 'Product Type',
+    type: 'Product_t Type',
     price: 9.99,
     stock: BigInt(100),
     conditions: ['Condition 1', 'Condition 2'],
     colors: ['Color 1', 'Color 2'],
     specs: ['Spec 1', 'Spec 2', 'Spec 3'],
-    color: 'Product Color',
-    condition: 'Product Condition',
-    quantity: 1,
 };
 
-export default Product;
+export default Product_t;
